@@ -29,8 +29,6 @@ class SimpleTree<T> {
         // ваш код удаления существующего узла NodeToDelete
         SimpleTreeNode<T> parent = NodeToDelete.Parent;
         parent.Children.remove(NodeToDelete);
-        // parent.Children.addAll(NodeToDelete.Children);
-        // NodeToDelete.Children.clear();
     }
 
     public List<SimpleTreeNode<T>> GetAllNodes() {
@@ -43,9 +41,7 @@ class SimpleTree<T> {
         while (!listTemp.isEmpty()) {
             simpleTreeNode = listTemp.remove(0);
             if (!simpleTreeNode.Children.isEmpty()) {
-                //System.out.println("test - " + simpleTreeNode.Children);
                 listTemp.addAll(simpleTreeNode.Children);
-                //System.out.println();
             }
             listResult.add(simpleTreeNode);
         }
@@ -83,10 +79,4 @@ class SimpleTree<T> {
         }
         return count;
     }
-
-  /*  private List<SimpleTreeNode<T>> EnumTree(SimpleTreeNode<T> root) {
-        List<SimpleTreeNode<T>> list = new ArrayList<>();
-
-
-    }*/
 }
