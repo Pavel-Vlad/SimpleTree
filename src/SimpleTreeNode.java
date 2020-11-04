@@ -13,6 +13,7 @@ public class SimpleTreeNode<T> {
 }
 
 class SimpleTree<T> {
+
     public SimpleTreeNode<T> Root; // корень, может быть null
 
     public SimpleTree(SimpleTreeNode<T> root) {
@@ -75,8 +76,30 @@ class SimpleTree<T> {
         int count = 0;
         for (SimpleTreeNode<T> i :
                 GetAllNodes()) {
-            if (i.Children.isEmpty()) count ++;
+            if (i.Children.isEmpty()) count++;
         }
         return count;
     }
+
+    // найти лес, состоящий из чётных деревьев
+    public ArrayList<T> EvenTrees() {
+        ArrayList<T> resultList = new ArrayList<>();
+        SimpleTreeNode<T> node = Root;
+        List<SimpleTreeNode<T>> listTemp = new ArrayList<>();
+        listTemp.add(node);
+        while (!listTemp.isEmpty()) {
+            node = listTemp.remove(0);
+            SimpleTree<T> tempTree = new SimpleTree<>(node);
+            if (tempTree.Count() % 2 == 0) {
+                if (node.Parent != null) {
+                    resultList.add(node.Parent.NodeValue);
+                    resultList.add(node.NodeValue);
+                }
+                listTemp.addAll(node.Children);
+            }
+        }
+        return resultList;
+    }
+
+
 }
